@@ -1,3 +1,10 @@
+CustomerID AS 'ID',
+       CustomerName AS 'Nome do Cliente',
+       ContactName AS 'Nome de Contado',
+       Addres AS 'Endereco', City AS 'Cidade',
+       PostalCode AS 'Codigo Postal',
+       Country AS 'Pais'
+
 1. Selecionar todos os registros em ordem crescente pelo campo
 `CustomerName`.
 
