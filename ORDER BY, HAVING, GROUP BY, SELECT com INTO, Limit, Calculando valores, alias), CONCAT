@@ -1,0 +1,152 @@
+Bloco 1: Aquecimento e Exploração (CONCAT, Cálculos e LIMIT)
+Neste bloco, o foco é a manipulação de strings e operações matemáticas simples, 
+limitando o número de resultados no ecrã.
+
+1. Selecione o nome do produto e calcule o dobro do seu preço. Limite o
+resultado aos 10 primeiros registos.
+
+SELECT CONCAT ('Nome: ',ProductName,' - Preco: ',Price) AS 'Nome e preco padrao',
+Price*2 AS 'Dobro Preco'
+FROM Products
+LIMIT 10;
+
+2. Crie uma lista com os 5 produtos mais baratos, apresentando uma coluna
+concatenada que diga: "O produto [ProductName] custa [Price] euros".
+
+SELECT CONCAT ('O produto ',ProductName,' custa ',
+FORMAT (Price,2,'pt_BR'),' euros.') AS 'Custo do produto'
+FROM Products
+ORDER BY Price ASC 
+LIMIT 5;
+
+3. Apresente os detalhes da encomenda (OrderDetailID) e calcule o valor total
+(Quantidade * 10 - assumindo um preço fictício). Limite aos 15 primeiros.
+
+SELECT OrderDetailID AS 'ID detalhado do pedido',
+Quantity AS 'Quantidade (un.)',
+CONCAT (Quantity,' x 4 = ',Quantity*4) AS 'Quantidade (pck.)'
+FROM OrderDetails
+LIMIT 15;
+
+4. Concatene o nome e apelido (FirstName e LastName) dos funcionários,
+adicionando a string " - Funcionário Senai". Limite aos 3 primeiros.
+5. Liste os 8 produtos mais caros. Na mesma consulta, apresente o preço
+com um desconto de 15% aplicado.
+6. Mostre o nome do cliente (CustomerName) concatenado com a sua
+cidade. Exiba apenas os 12 primeiros resultados ordenados
+alfabeticamente.
+7. Calcule a diferença de quantidade entre um stock ideal de 100 e a Quantity
+atual na tabela OrderDetails. Limite a 20 linhas.
+8. Crie uma coluna concatenando CategoryName e Description separadas
+por um hífen. Limite a 5 categorias.
+9. Apresente o SupplierName e calcule quanto custaria comprar 50 unidades
+de um produto associado (cruzando os dados mentalmente ou por
+subquery simples). Limite a 10.
+10.Concatene o endereço, cidade e código postal dos clientes numa única
+coluna "Morada Completa". Limite aos primeiros 25.
+Bloco 2: Agrupamentos e Contagens (GROUP BY, COUNT e LIMIT)
+Aqui, os alunos começam a agregar dados e a contar ocorrências.
+11. Agrupe os clientes por City e conte quantos clientes existem em cada
+cidade. Mostre apenas as 5 cidades com mais clientes.
+12.Conte quantos produtos existem para cada CategoryID. Limite a
+apresentação aos 3 primeiros grupos.
+
+13. Agrupe as encomendas (Orders) por EmployeeID e conte quantas
+encomendas cada funcionário geriu. Limite aos 5 funcionários mais
+produtivos.
+14.Conte quantos fornecedores (Suppliers) existem por Country. Mostre o
+resultado limitado a 10 países.
+15. Agrupe os OrderDetails por OrderID e conte quantos tipos de produtos
+diferentes existem em cada encomenda. Limite a 15 encomendas.
+16.Determine o número de shippers (transportadoras) agrupados por City.
+Limite aos 2 primeiros resultados.
+17. Agrupe os produtos por SupplierID e conte o total de produtos fornecidos.
+Limite a 5 resultados.
+18.Conte o número de encomendas feitas numa data específica (OrderDate),
+agrupando por essa mesma data. Limite aos 10 dias mais movimentados.
+19. Agrupe os clientes pelo PostalCode e conte quantos partilham o mesmo
+código. Limite a 8 resultados.
+20.Conte quantas categorias diferentes de produtos são geridas. (Simulação
+de agrupamento geral).
+Bloco 3: O Poder do Filtro em Agrupamentos (GROUP BY, HAVING e COUNT)
+Elevação da dificuldade: filtrar os dados depois de os agrupar.
+21. Agrupe os clientes por país (assumindo que existe da morada) e conte-os.
+Use HAVING para mostrar apenas os países com mais de 5 clientes.
+22. Liste os EmployeeID que geriram mais de 10 encomendas (Orders). Utilize
+GROUP BY e HAVING e conte as encomendas.
+23. Agrupe os produtos por CategoryID. Mostre as categorias (HAVING) que
+possuem mais de 12 produtos cadastrados (COUNT).
+24. Identifique as cidades (City na tabela Suppliers) que têm exatamente 2
+fornecedores.
+25. Agrupe OrderDetails por OrderID. Use HAVING para listar apenas as
+encomendas que contêm mais de 3 produtos distintos.
+26.Conte os clientes por cidade. Exiba apenas as cidades onde a contagem de
+clientes é superior a 3.
+27. Agrupe os produtos pelo SupplierID. Mostre os fornecedores que oferecem
+menos de 5 produtos no catálogo.
+
+28. Verifique se alguma categoria (Categories) tem a mesma contagem de
+produtos (exige subqueries ou HAVING avançado).
+29. Agrupe os funcionários pelo ano de nascimento (BirthDate) e conte-os.
+Mostre os anos com mais de 1 funcionário a celebrar aniversário.
+30. Agrupe as transportadoras (Shippers) pelo país (se deduzido pelo Supplier
+ligado) e liste apenas os que têm mais de 1 registo.
+Bloco 4: Criação de Tabelas e Backups (SELECT INTO)
+Fundamental para o mercado de trabalho: isolar e guardar dados.
+31.Crie uma nova tabela chamada TopClientes_Senai usando SELECT INTO
+contendo apenas os dados dos 10 primeiros clientes.
+32.Use SELECT INTO para criar a tabela ProdutosCaros copiando os produtos
+cujo preço é superior a 50 euros.
+33.Crie um backup das categorias (BackupCategorias) usando SELECT INTO.
+34.Copie os dados dos funcionários (LastName, FirstName) para uma nova
+tabela chamada EquipaVendas.
+35.Usando SELECT INTO, crie uma tabela EncomendasRecentes com as
+últimas 20 encomendas (LIMIT com ordenação).
+36.Crie a tabela FornecedoresNacionais inserindo apenas os fornecedores de
+uma cidade específica à escolha do aluno.
+37.Copie o nome e telefone de todos os transportadores (Shippers) para uma
+tabela chamada ContactosTransporte.
+38.Crie uma tabela DetalhesGrandes com os OrderDetails onde a Quantity for
+superior a 50.
+39. Faça um backup apenas da coluna CustomerName e ContactName para
+uma tabela de envio de emails chamada MailingList.
+40.Crie uma tabela de auditoria ProdutosInativos para guardar produtos com
+preço igual a 0 ou em falta.
+Bloco 5: O Desafio Final - A Mescla Total (Senai Master)
+Os alunos devem combinar múltiplos conceitos numa única instrução SQL.
+41. (CONCAT, COUNT, GROUP BY, HAVING, LIMIT): Conte os produtos por
+categoria. Concatene o texto "Categoria No " com o CategoryID. Mostre
+apenas as categorias com mais de 5 produtos (HAVING) e limite aos 3
+primeiros resultados.
+
+42. (Cálculos, GROUP BY, SELECT INTO): Agrupe os OrderDetails por OrderID.
+Calcule a quantidade total de itens por encomenda. Guarde o resultado
+numa nova tabela ResumoEncomendas.
+43. (CONCAT, LIMIT, SELECT INTO): Selecione os 5 funcionários mais velhos,
+concatenando o primeiro e último nome. Guarde o resultado na tabela
+VeteranosSenai.
+44. (COUNT, GROUP BY, HAVING, LIMIT, SELECT INTO): Conte quantos
+clientes existem por cidade. Filtre as cidades com mais de 2 clientes.
+Limite a 5 resultados e insira os dados na tabela CidadesEstrategicas.
+45. (Cálculos, CONCAT, LIMIT): Para a tabela Produtos, calcule o valor do IVA
+(Preço * 0.23). Concatene "Produto: " com o nome e " IVA: " com o valor
+calculado. Limite aos 15 primeiros.
+46. (GROUP BY, Cálculos, HAVING): Agrupe os detalhes das encomendas
+(OrderDetails) por ProductID. Calcule a média de quantidade
+encomendada. Mostre apenas os produtos com média superior a 20.
+47. (CONCAT, SELECT INTO, LIMIT): Concatene o nome do Fornecedor e o seu
+contacto. Limite a 10 e guarde a informação na tabela
+ContactosFornecedores.
+48. (COUNT, HAVING, Cálculos): Conte quantas encomendas cada
+funcionário processou. Exiba apenas os funcionários cuja contagem
+multiplicada por 2 seja superior a 50.
+49. (LIMIT, SELECT INTO, GROUP BY, COUNT): Crie uma tabela
+ResumoTransportes que guarde o ShipperID e a contagem de encomendas
+efetuadas, limitando às 2 transportadoras mais utilizadas.
+50. (O Teste Supremo): Crie uma tabela RelatorioFinal usando SELECT INTO.
+Esta tabela deve conter o texto concatenado do nome e apelido dos
+funcionários, o total de encomendas geridas por eles (COUNT agrupado
+pelo ID do funcionário), mostrando apenas os que geriram mais de 5
+encomendas (HAVING), e limitando o relatório final aos 3 funcionários de
+topo (LIMIT). (Nota: requer JOIN ou Subqueries na prática, excelente para
+alunos avançados).
