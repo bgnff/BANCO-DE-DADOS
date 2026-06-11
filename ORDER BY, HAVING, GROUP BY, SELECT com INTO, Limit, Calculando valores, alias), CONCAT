@@ -30,8 +30,15 @@ LIMIT 15;
 
 4. Concatene o nome e apelido (FirstName e LastName) dos funcionários,
 adicionando a string " - Funcionário Senai". Limite aos 3 primeiros.
+
+SELECT CONCAT (FirstName,' ', LastName,' - Funcionario Senai') AS 'Nomes Funcionarios' 
+FROM Employees
+LIMIT 3;
+
 5. Liste os 8 produtos mais caros. Na mesma consulta, apresente o preço
 com um desconto de 15% aplicado.
+
+
 6. Mostre o nome do cliente (CustomerName) concatenado com a sua
 cidade. Exiba apenas os 12 primeiros resultados ordenados
 alfabeticamente.
