@@ -82,6 +82,9 @@ MODIFY COLUMN Adress VARCHAR(70);
 ALTER TABLE Suppliers
 MODIFY COLUMN Phone VARCHAR(15);
 
+ALTER TABLE Customers
+RENAME COLUMN Adress TO Address;
+
 INSERT INTO Categories VALUES(1,'Beverages','Soft drinks, coffees, teas, beers, and ales');
 INSERT INTO Categories VALUES(2,'Condiments','Sweet and savory sauces, relishes, spreads, and seasonings');
 INSERT INTO Categories VALUES(3,'Confections','Desserts, candies, and sweet breads');
@@ -1022,6 +1025,15 @@ INSERT INTO OrderDetails VALUES(516,10442,66,60);
 INSERT INTO OrderDetails VALUES(517,10443,11,6);
 INSERT INTO OrderDetails VALUES(518,10443,28,12);
 
+SELECT CustomerID AS 'ID',
+CustomerName AS 'Nome do Cliente',
+ContactName AS 'Nome de Contado',
+Address AS 'Endereco', 
+City AS 'Cidade',
+PostalCode AS 'Codigo Postal',
+Country AS 'Pais'
+FROM Customers 
+WHERE PostalCode LIKE '%-%'
+ORDER BY City,CustomerName ASC;
+
  
-
-
