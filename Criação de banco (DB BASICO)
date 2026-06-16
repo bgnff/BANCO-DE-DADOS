@@ -35,17 +35,18 @@ Phone VARCHAR (15)
 
 CREATE TABLE Orders (
 OrderID INT PRIMARY KEY AUTO_INCREMENT,
-OrderDate DATETIME,
 CustomerID INT,
 EmployeeID INT,
+OrderDate DATETIME,
 ShipperID INT,
-FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID),
 FOREIGN KEY (EmployeeID) REFERENCES Employees (EmployeeID),
+FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID),
 FOREIGN KEY (ShipperID) REFERENCES Shippers (ShipperID)
 );
 
+
 CREATE TABLE Suppliers (
-SupplierID INT PRIMARY KEY AUTO_INCREMENT,
+SupplierID INTEGER PRIMARY KEY AUTO_INCREMENT,
 SupplierName VARCHAR (50),
 ContactName VARCHAR (50),
 Adress VARCHAR (50),
@@ -57,9 +58,9 @@ Phone VARCHAR (11)
 
 CREATE TABLE Products (
 ProductID INT PRIMARY KEY AUTO_INCREMENT,
-CategoryID INT,
+ProductName VARCHAR (40),
 SupplierID INT,
-ProductName VARCHAR (30),
+CategoryID INT,
 Unit VARCHAR (25),
 Price DECIMAL,
 FOREIGN KEY (CategoryID) REFERENCES Categories (CategoryID),
@@ -77,6 +78,9 @@ FOREIGN KEY (ProductID) REFERENCES Products (ProductID)
 
 ALTER TABLE Customers
 MODIFY COLUMN Adress VARCHAR(70);
+
+ALTER TABLE Suppliers
+MODIFY COLUMN Phone VARCHAR(15);
 
 INSERT INTO Categories VALUES(1,'Beverages','Soft drinks, coffees, teas, beers, and ales');
 INSERT INTO Categories VALUES(2,'Condiments','Sweet and savory sauces, relishes, spreads, and seasonings');
@@ -1017,7 +1021,6 @@ INSERT INTO OrderDetails VALUES(515,10442,54,80);
 INSERT INTO OrderDetails VALUES(516,10442,66,60);
 INSERT INTO OrderDetails VALUES(517,10443,11,6);
 INSERT INTO OrderDetails VALUES(518,10443,28,12);
-
 
  
 
