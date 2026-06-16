@@ -1,3 +1,8 @@
+FONTE DO INSERT: https://en.wikiversity.org/wiki/Database_Examples/Northwind/MySQL
+
+
+
+
 INSERT INTO Categories VALUES(1,'Beverages','Soft drinks, coffees, teas, beers, and ales');
 INSERT INTO Categories VALUES(2,'Condiments','Sweet and savory sauces, relishes, spreads, and seasonings');
 INSERT INTO Categories VALUES(3,'Confections','Desserts, candies, and sweet breads');
